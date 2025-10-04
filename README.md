@@ -1,13 +1,12 @@
-Add support for multiple files at once
-Allow saving all files to one folder automatically
-Quality slider
+Add support for multiple files at once - batch conversion
+Allow saving all files to one folder automatically - default download directory? maybe either root folder or rather /Downloads (or ask user to decide)
+Quality slider - adjust compression/quality settings - how? if...quality vector
 
-Folder structure and UI structure in case of multiple conversion/compression options
-- Multiple .py for every conversion set? run main with minimal code?
 
 What conversion types do I want?
 Separate conversions from compressions? Possible? Plausible?
 
+**! CONVERSION TYPES !!**
 
 png/jpeg - ico
 ico - png/jpeg
@@ -20,8 +19,21 @@ png/jpeg - svg
 png - jpeg
 jpeg - png
 
+pdf shrink
+word to pdf
+pdf to word
+
 
 -----------------------
-batch conversion
-resize on convert - koja je poanta?
-adjust compression/quality settings - 0-100% scroll? - SLIDER!
+
+resize on convert - can I always compress the file when converting?
+
+--------------------------
+
+readme button with supported formats? or some other way to show what program can do
+
+
+
+
+
+* pip install -r requirements.txt
