@@ -16,8 +16,8 @@ jpeg/png - pdf
 svg - png/jpeg
 png/jpeg - svg
 
-png - jpeg
-jpeg - png
+png - jpeg - DONE
+jpeg - png - DONE
 
 pdf shrink
 word to pdf

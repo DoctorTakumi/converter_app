@@ -1,42 +1,44 @@
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 from PIL import Image
-from os.path import basename  # optional if you want just the file name
+from os.path import basename
 
 
 class ImageConverterActions:
     def __init__(self, parent):
         self.parent = parent
 
-    # QfileDialog opens system's native file picker (Explorer in this case)
-    def select_file(self):
-        file_path, _ = QFileDialog.getOpenFileName(
-            self.parent,
-            "Open Image File",
-            "",
-            "Image Files (*.png *.jpg *.jpeg *.bmp *.webp)",
-        )
+    def select_file(self, filter="Image Files (*.png *.jpg *.jpeg *.bmp *.webp)"):
+        """Generic file picker with filter"""
+        file_path, _ = QFileDialog.getOpenFileName(self.parent, "Open File", "", filter)
         if file_path:
-            # Update GUI label with the selected file name
             self.parent.label.setText(f"Selected file: {basename(file_path)}")
-            self.convert_image(file_path)  ## this converts the file
+            return file_path
+        return None
 
-    def convert_image(self, path):
+    def convert_png_to_jpeg(self):
+        path = self.select_file("PNG Files (*.png)")
+        if not path:
+            return
+        self._convert_image(path, "JPEG", "JPEG Files (*.jpg *.jpeg)")
+
+    def convert_jpeg_to_png(self):
+        path = self.select_file("JPEG Files (*.jpg *.jpeg)")
+        if not path:
+            return
+        self._convert_image(path, "PNG", "PNG Files (*.png)")
+
+    def _convert_image(self, path, format, save_filter):
+        """Generic conversion helper"""
         try:
             img = Image.open(path)
-            rgb_img = img.convert("RGB")  # PNG might have alpha channel
+            if format == "JPEG":
+                img = img.convert("RGB")  # remove alpha for JPEG
 
-            # this saves the file
             save_path, _ = QFileDialog.getSaveFileName(
-                self.parent, "Save JPEG File", "", "JPEG Files (*.jpg *.jpeg)"
+                self.parent, "Save File", "", save_filter
             )
             if save_path:
-                rgb_img.save(
-                    save_path, "JPEG", quality=70
-                )  # quality from 0 (worst) to 95 (best)
-                QMessageBox.information(
-                    self.parent, "Success", f"Image saved as {save_path}"
-                )
+                img.save(save_path, format, quality=70 if format == "JPEG" else None)
+                QMessageBox.information(self.parent, "Success", f"Saved: {save_path}")
         except Exception as e:
-            QMessageBox.critical(
-                self.parent, "Error", f"Failed to convert image:\n{str(e)}"
-            )
+            QMessageBox.critical(self.parent, "Error", f"Failed:\n{str(e)}")

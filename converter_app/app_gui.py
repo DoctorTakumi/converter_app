@@ -11,12 +11,16 @@ class ApplicationGUI(QWidget):
         self.layout = QVBoxLayout()
 
         # Label to show instructions or selected file
-        self.label = QLabel("Select a PNG file to convert to JPEG")
+        self.label = QLabel("Select a file to convert")
         self.layout.addWidget(self.label)
 
-        # Button connected to logic method
-        self.button_select = QPushButton("Select PNG File")
-        self.button_select.clicked.connect(self.actions.select_file)
-        self.layout.addWidget(self.button_select)
+        # Buttons for conversions
+        self.button_png_to_jpeg = QPushButton("Convert PNG → JPEG")
+        self.button_png_to_jpeg.clicked.connect(self.actions.convert_png_to_jpeg)
+        self.layout.addWidget(self.button_png_to_jpeg)
+
+        self.button_jpeg_to_png = QPushButton("Convert JPEG → PNG")
+        self.button_jpeg_to_png.clicked.connect(self.actions.convert_jpeg_to_png)
+        self.layout.addWidget(self.button_jpeg_to_png)
 
         self.setLayout(self.layout)
