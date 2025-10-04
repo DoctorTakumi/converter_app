@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 from PIL import Image
-
-## from os.path import basename # optional if you want just the file name
+from os.path import basename  # optional if you want just the file name
 
 
 class ImageConverterActions:
@@ -18,9 +17,7 @@ class ImageConverterActions:
         )
         if file_path:
             # Update GUI label with the selected file name
-            # Show full path
-            self.parent.label.setText(f"Selected file: {file_path}")  ## new
-            # self.parent.label.setText(f"Selected file: {basename(file_path)}")
+            self.parent.label.setText(f"Selected file: {basename(file_path)}")
             self.convert_image(file_path)  ## this converts the file
 
     def convert_image(self, path):
