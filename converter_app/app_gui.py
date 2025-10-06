@@ -25,10 +25,11 @@ class ApplicationGUI(QWidget):
         self.layout.addWidget(self.label)
 
         # Buttons for conversions
-        self.button_png_to_jpg = QPushButton("Convert PNG → JPG")
-        self.button_png_to_jpg.setFont(QFont("Arial", 12))
-        self.button_png_to_jpg.clicked.connect(self.actions.convert_png_to_jpg)
-        self.layout.addWidget(self.button_png_to_jpg)
+        # CONVERT TO JPG
+        self.button_convert_to_jpg = QPushButton("Convert to JPG")
+        self.button_convert_to_jpg.setFont(QFont("Arial", 12))
+        self.button_convert_to_jpg.clicked.connect(self.actions.convert_to_jpg)
+        self.layout.addWidget(self.button_convert_to_jpg)
 
         self.button_jpg_to_png = QPushButton("Convert JPG → PNG")
         self.button_jpg_to_png.setFont(QFont("Arial", 12))
