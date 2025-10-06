@@ -6,7 +6,10 @@ from converter_app.img_converter import ImageConverterActions
 class ApplicationGUI(QWidget):
     def __init__(self):
         super().__init__()
-        self.actions = ImageConverterActions(self)  ## Logic instance
+        # adding ": ImageConverterActions" to tell VSC that self.actions is of type ImageConverterActions
+        ## calls __init__ of ImageConverterActions class and assigns it to the self.actions variable
+        ### ImageConverterActions class can access and control things in GUI (self.label, etc.)
+        self.actions: ImageConverterActions = ImageConverterActions(self)  
 
         self.setStyleSheet("background-color: #f0f0f0;")  # light gray
 
@@ -15,7 +18,8 @@ class ApplicationGUI(QWidget):
         self.setMinimumSize(450, 200)  # W x H
 
         # vertical layout
-        self.layout = QVBoxLayout()
+        ## ": QVBoxLayout" as a type hint to tell VSC that self.layout is a QVBoxLayout
+        self.layout: QVBoxLayout = QVBoxLayout()
         self.setLayout(self.layout)
 
         # Label to show instructions or selected file
