@@ -35,10 +35,11 @@ class ApplicationGUI(QWidget):
         self.button_convert_to_jpg.clicked.connect(self.actions.convert_to_jpg)
         self.layout.addWidget(self.button_convert_to_jpg)
 
-        self.button_jpg_to_png = QPushButton("Convert JPG → PNG")
-        self.button_jpg_to_png.setFont(QFont("Arial", 12))
-        self.button_jpg_to_png.clicked.connect(self.actions.convert_jpg_to_png)
-        self.layout.addWidget(self.button_jpg_to_png)
+        # CONVERT TO PNG
+        self.button_convert_to_png = QPushButton("Convert to PNG")
+        self.button_convert_to_png.setFont(QFont("Arial", 12))
+        self.button_convert_to_png.clicked.connect(self.actions.convert_to_png)
+        self.layout.addWidget(self.button_convert_to_png)
 
         self.layout.setContentsMargins(20, 20, 20, 20)
         self.layout.setSpacing(15)

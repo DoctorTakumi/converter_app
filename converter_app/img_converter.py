@@ -21,8 +21,8 @@ class ImageConverterActions:
             return
         self._convert_image(path, "JPEG", "JPEG Files (*.jpg *.jpeg)")
 
-    def convert_jpg_to_png(self):
-        path = self.select_file("JPEG Files (*.jpg *.jpeg)")
+    def convert_to_png(self):
+        path = self.select_file("Image Files (*.bmp *.webp *.jpg *.jpeg)")
         if not path:
             return
         self._convert_image(path, "PNG", "PNG Files (*.png)")
