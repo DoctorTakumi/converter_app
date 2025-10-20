@@ -37,3 +37,9 @@ readme button with supported formats? or some other way to show what program can
 
 
 * pip install -r requirements.txt
+
+If converting to .ico - first convert .jpg (or whatever format you have) to .png as .jpg doesn't support transparency which is often needed for .ico
+
+
+- while converting, add better suffix - e.g. "converted_ico" to show the format even if extension is hidden
+- add .ico to .jpg and .png conversions (or maybe only png due to transparency)

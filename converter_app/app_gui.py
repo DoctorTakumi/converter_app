@@ -41,5 +41,11 @@ class ApplicationGUI(QWidget):
         self.button_convert_to_png.clicked.connect(self.actions.convert_to_png)
         self.layout.addWidget(self.button_convert_to_png)
 
+        # CONVERT TO ICO
+        self.button_convert_to_ico = QPushButton("Convert to ICO")
+        self.button_convert_to_ico.setFont(QFont("Arial", 12))
+        self.button_convert_to_ico.clicked.connect(self.actions.convert_to_ico)
+        self.layout.addWidget(self.button_convert_to_ico)
+
         self.layout.setContentsMargins(20, 20, 20, 20)
         self.layout.setSpacing(15)

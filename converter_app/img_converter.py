@@ -44,6 +44,15 @@ class ImageConverterActions:
         for path in paths:
             self._convert_image(path, "PNG")
 
+    # conversion to ICO
+    def convert_to_ico(self):
+        paths = self.select_files("Image Files (*.png *.jpg *.jpeg)")
+        if not paths:
+            return
+        
+        for path in paths:
+            self._convert_image(path, "ICO")
+
     def _convert_image(self, path, format):
         """Convert a single image to the specified format and save it next to the original."""
         try:
@@ -51,6 +60,19 @@ class ImageConverterActions:
 
             if format == "JPEG":
                 img = img.convert("RGB")  # remove alpha channel (JPEG doesn't support transparency)
+            elif format == "ICO":
+                img = img.convert("RGBA") # ICO supports transparency
+
+                # resize to common icon sizes
+                sizes = [(16,16), (32,32), (48,48), (64,64), (128,128), (256,256)]
+
+                base_name = os.path.splitext(path)[0]
+                output_path = f"{base_name}_converted.ico"
+
+                # here Pillow packages all resized versions into one .ico file which OS will auto-select later
+                img.save(output_path, format="ICO", sizes=sizes)
+                print(f"Saved: {output_path}")
+                return
 
             # Build the output file path: originalname_converted.jpg/png
             base_name = os.path.splitext(path)[0]
