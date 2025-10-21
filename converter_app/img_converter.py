@@ -22,7 +22,10 @@ class ImageConverterActions:
         """Multi-file picker with filter"""
         file_paths, _ = QFileDialog.getOpenFileNames(self.parent, "Select Files", "", filter)
         if file_paths:
-            self.parent.label.setText(f"Selected {len(file_paths)} files")
+            if len(file_paths) == 1:
+                self.parent.label.setText(f"{len(file_paths)} file selected")
+            else:
+                self.parent.label.setText(f"{len(file_paths)} files selected")
             return file_paths
         return []
 
