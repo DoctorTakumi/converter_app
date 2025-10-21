@@ -22,6 +22,7 @@ class ImageConverterActions:
     def select_files(self, filter="Image Files (*.png *.bmp *.webp *.jpeg *.jpg)"):
         """Multi-file picker with filter"""
         file_paths, _ = QFileDialog.getOpenFileNames(self.parent, "Select Files", "", filter)
+        # for GUI text while one or multiple files are selected
         if file_paths:
             if len(file_paths) == 1:
                 self.parent.label.setText(f"{len(file_paths)} file selected")

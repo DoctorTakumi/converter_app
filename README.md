@@ -8,8 +8,8 @@ Separate conversions from compressions? Possible? Plausible?
 
 **! CONVERSION TYPES !!**
 
-png/jpeg - ico
-ico - png/jpeg
+png/jpeg - ico - DONE (only png - jpeg isn't suitable for that)
+ico - png/jpeg - DONE
 
 pdf - png/jpeg
 jpeg/png - pdf
@@ -38,8 +38,7 @@ readme button with supported formats? or some other way to show what program can
 
 * pip install -r requirements.txt
 
-If converting to .ico - first convert .jpg (or whatever format you have) to .png as .jpg doesn't support transparency which is often needed for .ico
+NOTE: If converting to .ico - first convert .jpg (or whatever format you have) to .png as .jpg doesn't support transparency which is often needed for .ico --- only convert png to ico
 
 
 - while converting, add better suffix - e.g. "converted_ico" to show the format even if extension is hidden
-- add .ico to .jpg and .png conversions (or maybe only png due to transparency)
