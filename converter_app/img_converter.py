@@ -2,6 +2,7 @@ import os
 from PySide6.QtWidgets import QFileDialog, QMessageBox
 from PIL import Image
 from os.path import basename
+from .helpers import get_unique_filename
 
 
 class ImageConverterActions:
@@ -63,6 +64,7 @@ class ImageConverterActions:
             # Build the output file path: originalname_converted.jpg/png
             base_name = os.path.splitext(path)[0]
             output_path = f"{base_name}_converted.{format.lower()}"
+            output_path = get_unique_filename(output_path)
 
             if format == "JPEG":
                 img = img.convert("RGB")  # remove alpha channel (JPEG doesn't support transparency)
