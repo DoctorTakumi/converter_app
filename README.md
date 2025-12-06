@@ -1,37 +1,38 @@
-Add support for multiple files at once - batch conversion
+Add support for multiple files at once - batch conversion - DONE for images
 Allow saving all files to one folder automatically - default download directory? maybe either root folder or rather /Downloads (or ask user to decide)
-Quality slider - adjust compression/quality settings - how? if...quality vector
+Quality slider - adjust compression/quality settings - how? if...quality slider
 
 
 What conversion types do I want?
 Separate conversions from compressions? Possible? Plausible?
 
-**! CONVERSION TYPES !!**
 
-png/jpeg - ico - DONE (only png - jpeg isn't suitable for that)
-ico - png/jpeg - DONE
+-----------------------
 
+**!! CONVERSION TYPES !!**
+
+**IMAGES**
+~~png/jpeg - ico~~ - DONE (only png - jpeg isn't suitable for that)
+~~ico - png/jpeg~~ - DONE
+
+~~png - jpeg~~ - DONE
+~~jpeg - png~~ - DONE
+
+**PDF**
 pdf - png/jpeg
 jpeg/png - pdf
-svg - png/jpeg
-png/jpeg - svg
-
-png - jpeg - DONE
-jpeg - png - DONE
 
 pdf shrink
 word to pdf
 pdf to word
 
+- add .avif to jpg/png
 
------------------------
-
-resize on convert - can I always compress the file when converting?
+**MISC**
+~~svg - png/jpeg~~ - irrelevant for now
+~~png/jpeg - svg~~ - irrelevant for now
 
 --------------------------
-
-readme button with supported formats? or some other way to show what program can do
-
 
 
 
