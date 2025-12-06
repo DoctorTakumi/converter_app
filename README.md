@@ -18,6 +18,9 @@ Separate conversions from compressions? Possible? Plausible?
 ~~png - jpeg~~ - DONE
 ~~jpeg - png~~ - DONE
 
+~~avif - jpg~~ - DONE
+~~avif - png~~ - DONE
+
 **PDF**
 pdf - png/jpeg
 jpeg/png - pdf
@@ -26,7 +29,6 @@ pdf shrink
 word to pdf
 pdf to word
 
-- add .avif to jpg/png
 
 **MISC**
 ~~svg - png/jpeg~~ - irrelevant for now
@@ -43,3 +45,5 @@ NOTE: If converting to .ico - first convert .jpg (or whatever format you have) t
 
 
 - while converting, add better suffix - e.g. "converted_ico" to show the format even if extension is hidden
+
+- output message in is the terminal for now - later it should be added to converter app

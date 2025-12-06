@@ -17,11 +17,13 @@ class ImageConverterActions:
             self.parent.label.setText(f"Selected file: {basename(file_path)}")
             return file_path
         return None
-    
+
     # function for batch conversion
     def select_files(self, filter="Image Files (*.png *.bmp *.webp *.jpeg *.jpg)"):
         """Multi-file picker with filter"""
-        file_paths, _ = QFileDialog.getOpenFileNames(self.parent, "Select Files", "", filter)
+        file_paths, _ = QFileDialog.getOpenFileNames(
+            self.parent, "Select Files", "", filter
+        )
         # for GUI text while one or multiple files are selected
         if file_paths:
             if len(file_paths) == 1:
@@ -33,19 +35,21 @@ class ImageConverterActions:
 
     # conversion to JPG
     def convert_to_jpg(self):
-        paths = self.select_files("Image Files (*.png *.bmp *.webp)")
+        paths = self.select_files("Image Files (*.png *.bmp *.webp, *.avif)")
         if not paths:
             return
-        
+
         for path in paths:
             self._convert_image(path, "JPEG")
 
     # conversion to PNG
     def convert_to_png(self):
-        paths = self.select_files("Image Files (*.bmp *.webp *.jpg *.jpeg *.ico)")
+        paths = self.select_files(
+            "Image Files (*.bmp *.webp *.jpg *.jpeg *.ico, *.avif)"
+        )
         if not paths:
             return
-        
+
         for path in paths:
             self._convert_image(path, "PNG")
 
@@ -54,7 +58,7 @@ class ImageConverterActions:
         paths = self.select_files("Image Files (*.png *.jpg *.jpeg)")
         if not paths:
             return
-        
+
         for path in paths:
             self._convert_image(path, "ICO")
 
@@ -68,26 +72,29 @@ class ImageConverterActions:
             output_path = get_unique_filename(output_path)
 
             if format == "JPEG":
-                img = img.convert("RGB")  # remove alpha channel (JPEG doesn't support transparency)
+                img = img.convert(
+                    "RGB"
+                )  # remove alpha channel (JPEG doesn't support transparency)
                 img.save(output_path, format="JPEG", quality=70)
 
             elif format == "PNG":
-                img = img.convert("RGBA") # ensures alpha is preserved
+                img = img.convert("RGBA")  # ensures alpha is preserved
                 img.save(output_path, format="PNG")
 
             elif format == "ICO":
-                img = img.convert("RGBA") # ICO supports transparency
+                img = img.convert("RGBA")  # ICO supports transparency
                 # resize to common icon sizes
-                sizes = [(16,16), (32,32), (48,48), (64,64), (128,128), (256,256)]
-                output_path = f"{base_name}_converted.ico" # overrides extension
+                sizes = [(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)]
+                output_path = f"{base_name}_converted.ico"  # overrides extension
                 # here Pillow packages all resized versions into one .ico file which OS will auto-select later
                 img.save(output_path, format="ICO", sizes=sizes)
 
             else:
                 raise ValueError(f"Unsupported format: {format}")
-            
 
             print(f"Saved: {output_path}")
 
         except Exception as e:
-            QMessageBox.critical(self.parent, "Error", f"Failed to convert:\n{path}\n\n{str(e)}")
+            QMessageBox.critical(
+                self.parent, "Error", f"Failed to convert:\n{path}\n\n{str(e)}"
+            )
