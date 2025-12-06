@@ -8,8 +8,8 @@ class PDFConverterActions:
         self.parent = parent
         # path to the bundled Poppler binaries
         self.poppler_path = os.path.join(os.path.dirname(__file__), "poppler", "bin")
-        print("Poppler path set to:", self.poppler_path)
-        print("Files in poppler/bin:", os.listdir(self.poppler_path))
+        # print("Poppler path set to:", self.poppler_path)
+        # print("Files in poppler/bin:", os.listdir(self.poppler_path))
 
     def select_files(self, filters="PDF Files (*.pdf)"):
         """Open file dialog to select multiple PDFs"""
