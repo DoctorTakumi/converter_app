@@ -47,3 +47,5 @@ NOTE: If converting to .ico - first convert .jpg (or whatever format you have) t
 - while converting, add better suffix - e.g. "converted_ico" to show the format even if extension is hidden
 
 - output message in is the terminal for now - later it should be added to converter app
+
+- poppler binaries are included into poppler/bin for the pdf - img conversions

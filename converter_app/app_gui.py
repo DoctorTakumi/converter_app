@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel
 from PySide6.QtGui import QFont
 from converter_app.img_converter import ImageConverterActions
+from converter_app.pdf_converter import PDFConverterActions
 
 
 class ApplicationGUI(QWidget):
@@ -9,11 +10,11 @@ class ApplicationGUI(QWidget):
         # adding ": ImageConverterActions" to tell VSC that self.actions is of type ImageConverterActions
         ## calls __init__ of ImageConverterActions class and assigns it to the self.actions variable
         ### ImageConverterActions class can access and control things in GUI (self.label, etc.)
-        self.actions: ImageConverterActions = ImageConverterActions(self)  
+        self.actions: ImageConverterActions = ImageConverterActions(self)
+        self.pdf_actions: PDFConverterActions = PDFConverterActions(self)
 
+        # GUI visuals
         self.setStyleSheet("background-color: #f0f0f0;")  # light gray
-
-        # window title and minimum size
         self.setWindowTitle("File Converter")
         self.setMinimumSize(450, 200)  # W x H
 
@@ -46,6 +47,14 @@ class ApplicationGUI(QWidget):
         self.button_convert_to_ico.setFont(QFont("Arial", 12))
         self.button_convert_to_ico.clicked.connect(self.actions.convert_to_ico)
         self.layout.addWidget(self.button_convert_to_ico)
+
+        # PDF TO IMAGES
+
+        self.button_pdf_to_image = QPushButton("PDF to Image")
+        self.button_pdf_to_image.setFont(QFont("Arial", 12))
+        self.button_pdf_to_image.clicked.connect(self.pdf_actions.pdf_to_image)
+        self.layout.addWidget(self.button_pdf_to_image)
+
 
         self.layout.setContentsMargins(20, 20, 20, 20)
         self.layout.setSpacing(15)

@@ -1,2 +1,5 @@
 PySide6
 Pillow
+pdf2image
+
+# poppler is located in root/poppler/bin
