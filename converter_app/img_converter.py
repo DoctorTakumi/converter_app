@@ -112,7 +112,7 @@ class ImageConverterActions:
 
         bundle_btn = msg.addButton("Bundle into one PDF", QMessageBox.AcceptRole)
         separate_btn = msg.addButton("Separate PDFs (one per image)", QMessageBox.AcceptRole)
-        cancel_btn = msg.addButton("Cancel", QMessageBox.AcceptRole)
+        msg.setStandardButtons(QMessageBox.Cancel)
 
         msg.exec()
 
