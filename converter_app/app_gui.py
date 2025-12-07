@@ -95,6 +95,12 @@ class ApplicationGUI(QWidget):
         self.layout.addWidget(self.button_pdf_to_image)
 
         # DOCX TO PDF
+        self.button_docx_to_pdf = QPushButton("DOCX to PDF")
+        self.button_docx_to_pdf.setFont(QFont("Arial", 12))
+        self.button_docx_to_pdf.clicked.connect(self.pdf_actions.docx_to_pdf)
+        self.button_docx_to_pdf.setStyleSheet(button_style)
+        self.layout.addWidget(self.button_docx_to_pdf)
+
         # PDF TO DOCX
         #PDF SHRINK
 
