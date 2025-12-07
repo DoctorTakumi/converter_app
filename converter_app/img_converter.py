@@ -98,3 +98,65 @@ class ImageConverterActions:
             QMessageBox.critical(
                 self.parent, "Error", f"Failed to convert:\n{path}\n\n{str(e)}"
             )
+
+    
+    # img to pdf conversions
+    def image_to_pdf(self):
+        paths = self.select_files("Image Files (*.png *.jpg *.jpeg *.bmp *.webp)")
+        if not paths:
+            return
+        
+        msg = QMessageBox(self.parent)
+        msg.setWindowTitle("Image to PDF")
+        msg.setText("How do you want to convert the selected images?")
+
+        bundle_btn = msg.addButton("Bundle into one PDF", QMessageBox.AcceptRole)
+        separate_btn = msg.addButton("Separate PDFs (one per image)", QMessageBox.AcceptRole)
+        cancel_btn = msg.addButton("Cancel", QMessageBox.AcceptRole)
+
+        msg.exec()
+
+        if  msg.clickedButton() == bundle_btn:
+            self.convert_images_to_single_pdf(paths)
+        elif msg.clickedButton() == separate_btn:
+            self.convert_images_to_multiple_pdfs(paths)
+        else:
+            return
+        
+    def convert_images_to_single_pdf(self, paths):
+        try:
+            images = []
+            for path in paths:
+                img = Image.open(path).convert("RGB")
+                images.append(img)
+
+            # choose output name based on first file
+            first = os.path.splitext(paths[0])[0]
+            output_path = get_unique_filename(first + "_merged.pdf")
+
+            images[0].save(output_path, save_all=True, append_images=images[1:])
+            QMessageBox.information(self.parent, "Success", f"Saved:\n{output_path}")
+
+        except Exception as e:
+            QMessageBox.critical(self.parent, "Error", str(e))
+
+    def convert_images_to_multiple_pdfs(self, paths):
+        try:
+            for path in paths:
+                img = Image.open(path).convert("RGB")
+
+                base = os.path.splitext(path)[0]
+                output_path = get_unique_filename(base + ".pdf")
+
+                img.save(output_path, "PDF", resolution=100)
+
+            QMessageBox.information(
+                self.parent,
+                "Success",
+                f"Created {len(paths)} PDF files."
+            )
+
+        except Exception as e:
+            QMessageBox.critical(self.parent, "Error", str(e))
+
+

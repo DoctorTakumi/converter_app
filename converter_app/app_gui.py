@@ -18,6 +18,7 @@ class ApplicationGUI(QWidget):
         self.setWindowTitle("File Converter")
         self.setMinimumSize(450, 200)  # W x H
 
+        # button style function
         button_style = """
             QPushButton {
                 background-color: #add8e6;  /* light blue */
@@ -79,14 +80,23 @@ class ApplicationGUI(QWidget):
         self.button_convert_to_ico.setStyleSheet(button_style)
         self.layout.addWidget(self.button_convert_to_ico)
 
-        # PDF TO IMAGES
+        # IMAGES TO PDF
+        self.button_image_to_pdf = QPushButton("Image to PDF")
+        self.button_image_to_pdf.setFont(QFont("Arial", 12))
+        self.button_image_to_pdf.clicked.connect(self.actions.image_to_pdf)
+        self.button_image_to_pdf.setStyleSheet(button_style)
+        self.layout.addWidget(self.button_image_to_pdf)
 
+        # PDF TO IMAGES
         self.button_pdf_to_image = QPushButton("PDF to Image")
         self.button_pdf_to_image.setFont(QFont("Arial", 12))
         self.button_pdf_to_image.clicked.connect(self.pdf_actions.pdf_to_image)
         self.button_pdf_to_image.setStyleSheet(button_style)
         self.layout.addWidget(self.button_pdf_to_image)
 
+        # DOCX TO PDF
+        # PDF TO DOCX
+        #PDF SHRINK
 
         self.layout.setContentsMargins(20, 20, 20, 20)
         self.layout.setSpacing(15)
